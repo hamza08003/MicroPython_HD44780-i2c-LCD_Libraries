@@ -52,7 +52,7 @@ print(i2c_hex_scan)
 
 ### 3. Now you are ready to perform different operations on your LCD
 
-   Try this basic example to display 'Hello World' on your LCD Screen
+   Try this basic example to display numbers count on your LCD Screen
 
    ```python
    from machine import I2C, Pin
@@ -61,11 +61,19 @@ print(i2c_hex_scan)
    i2c = I2C(1, sda=Pin(2), scl=Pin(3), freq=400000)
    lcd = I2cLcd(i2c, 0x27, 2, 16)
    
-   def print_to_lcd(message):
-       lcd.clear()
-       lcd.putstr(message)
+   def count_and_display(lcd, count):
+      lcd.putstr("Let's Count:\n0-{}!".format(count))
+      sleep(1.5)
+      lcd.clear()
+       
+      for i in range(count + 1):
+         lcd.putstr(str(i))
+         sleep(0.75)
+         lcd.clear()
 
-   print_to_lcd("Hello\nWorld!")
+   # Usage example
+   count = 10  # Set the count to 10 or any desired count
+   count_and_display(lcd, count)
    ```
 For further opeerations which you can perform on your LCD, you can refer to the `lcd_api.py` and see all the availible methods there.
    
