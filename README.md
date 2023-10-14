@@ -57,6 +57,7 @@ print(i2c_hex_scan)
    ```python
    from machine import I2C, Pin
    from machine_i2c_lcd import I2cLcd
+   from time import sleep
    
    i2c = I2C(1, sda=Pin(2), scl=Pin(3), freq=400000)
    lcd = I2cLcd(i2c, 0x27, 2, 16)
